@@ -83,6 +83,9 @@ def get_config_from_root(root):
         cfg.tag_prefix = ""
     cfg.parentdir_prefix = section.get("parentdir_prefix")
     cfg.verbose = section.get("verbose")
+    cfg.fallback_version = section.get("fallback_version")
+    if cfg.fallback_version in ("''", '""'):
+        cfg.fallback_version = ""
     return cfg
 
 

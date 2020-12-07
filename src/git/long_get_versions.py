@@ -21,7 +21,7 @@ def get_versions():
     try:
         return finalize(
             git_versions_from_keywords(get_keywords(), cfg.tag_prefix, verbose),
-            verbose=verbose)
+            cfg=cfg, verbose=verbose)
     except NotThisMethod:
         pass
 
@@ -38,11 +38,11 @@ def get_versions():
              "dirty": None,
              "error": "unable to find root of source tree",
              "date": None},
-            verbose=verbose)
+            cfg=cfg, verbose=verbose)
 
     try:
         pieces = git_pieces_from_vcs(cfg.tag_prefix, root, verbose)
-        return finalize(render(pieces, cfg.style), verbose=verbose)
+        return finalize(render(pieces, cfg.style), cfg=cfg, verbose=verbose)
     except NotThisMethod:
         pass
 
@@ -50,7 +50,7 @@ def get_versions():
         if cfg.parentdir_prefix:
             return finalize(
                 versions_from_parentdir(cfg.parentdir_prefix, root, verbose),
-                verbose=verbose)
+                cfg=cfg, verbose=verbose)
     except NotThisMethod:
         pass
 
@@ -60,4 +60,4 @@ def get_versions():
          "error": "unable to compute version",
          "dirty": None,
          "date": None},
-        verbose=verbose)
+        cfg=cfg, verbose=verbose)

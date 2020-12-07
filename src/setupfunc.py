@@ -17,6 +17,7 @@ a section like:
  versionfile_build = myproject/_version.py
  tag_prefix =
  parentdir_prefix = myproject-
+ fallback_version =
 
 You will also need to edit your setup.py to use the results:
 
@@ -40,6 +41,7 @@ SAMPLE_CONFIG = """
 #versionfile_build =
 #tag_prefix =
 #parentdir_prefix =
+#fallback_version =
 
 """
 
@@ -73,6 +75,7 @@ def do_setup():
                         "TAG_PREFIX": cfg.tag_prefix,
                         "PARENTDIR_PREFIX": cfg.parentdir_prefix,
                         "VERSIONFILE_SOURCE": cfg.versionfile_source,
+                        "FALLBACK_VERSION": cfg.fallback_version,
                         })
 
     ipy = os.path.join(os.path.dirname(cfg.versionfile_source),

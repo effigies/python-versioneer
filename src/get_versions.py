@@ -48,7 +48,7 @@ def get_versions(verbose=False):
             ver = from_keywords_f(keywords, cfg.tag_prefix, verbose)
             if verbose:
                 print("got version from expanded keyword %s" % ver)
-            return finalize(ver, verbose=verbose)
+            return finalize(ver, cfg=cfg, verbose=verbose)
         except NotThisMethod:
             pass
 
@@ -56,7 +56,7 @@ def get_versions(verbose=False):
         ver = versions_from_file(versionfile_abs)
         if verbose:
             print("got version from file %s %s" % (versionfile_abs, ver))
-        return finalize(ver, verbose=verbose)
+        return finalize(ver, cfg=cfg, verbose=verbose)
     except NotThisMethod:
         pass
 
@@ -67,7 +67,7 @@ def get_versions(verbose=False):
             ver = render(pieces, cfg.style)
             if verbose:
                 print("got version from VCS %s" % ver)
-            return finalize(ver, verbose=verbose)
+            return finalize(ver, cfg=cfg, verbose=verbose)
         except NotThisMethod:
             pass
 
@@ -76,7 +76,7 @@ def get_versions(verbose=False):
             ver = versions_from_parentdir(cfg.parentdir_prefix, root, verbose)
             if verbose:
                 print("got version from parentdir %s" % ver)
-            return finalize(ver, verbose=verbose)
+            return finalize(ver, cfg=cfg, verbose=verbose)
     except NotThisMethod:
         pass
 
@@ -89,7 +89,7 @@ def get_versions(verbose=False):
          "error": "unable to compute version",
          "dirty": None,
          "date": None},
-        verbose=verbose)
+        cfg=cfg, verbose=verbose)
 
 
 def get_version():
